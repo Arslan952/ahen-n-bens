@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           elevation: 0,
 
         ),
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
       home: const SplashScreen(),
     );

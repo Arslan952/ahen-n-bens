@@ -34,21 +34,90 @@ class _LoginState extends State<Login> {
             context,
             MaterialPageRoute(builder: (context) => const HomeScreen()),
                 (route) => false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Container(
+            padding: const EdgeInsets.all(16),
+              height:90 ,
+              decoration: const BoxDecoration(
+                color: Color(0xffe1ad01),
+                borderRadius: BorderRadius.all(Radius.circular(20))
+              ),
+              child:Row(
+                children: [
+                  const SizedBox(width: 48,),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text('Login Suceesful',style: TextStyle(fontSize: 18,color: Colors.white),),
+                        Text('Welcome to hen n buns',style: TextStyle(fontSize: 12,color: Colors.white)),
+                      ],
+                    ),
+                  ),
+                ],
+              )),
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+          ),
+         );
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              backgroundColor: Colors.indigoAccent,
-              content: Text(
-                'User not Found',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              )));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Container(
+                padding: const EdgeInsets.all(16),
+                height:90 ,
+                decoration: const BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.all(Radius.circular(20))
+                ),
+                child:Row(
+                  children: [
+                    const SizedBox(width: 48,),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text('User not Found',style: TextStyle(fontSize: 18,color: Colors.white),),
+                          Text('Try again with different credential',style: TextStyle(fontSize: 12,color: Colors.white)),
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+          );
         } else if (e.code == 'wrong-password') {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              backgroundColor: Colors.indigoAccent,
-              content: Text(
-                'Password is incorrect Please try again',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              )));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Container(
+                padding: const EdgeInsets.all(16),
+                height:90 ,
+                decoration: const BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.all(Radius.circular(20))
+                ),
+                child:Row(
+                  children: [
+                    const SizedBox(width: 48,),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text('Password is incorrect',style: TextStyle(fontSize: 18,color: Colors.white),),
+                          Text('Try to login with correct password',style: TextStyle(fontSize: 12,color: Colors.white)),
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+          );
         }
       }
       /* Navigator.pushAndRemoveUntil(
@@ -216,7 +285,7 @@ class _LoginState extends State<Login> {
                     onTap: () {
                      Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) =>ForgetPassword()),
+                          MaterialPageRoute(builder: (context) =>const ForgetPassword()),
                               (route) => false);
                     },
                   ),
@@ -257,7 +326,7 @@ class _LoginState extends State<Login> {
                     onTap: () {
                      Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => Register()),
+                          MaterialPageRoute(builder: (context) => const Register()),
                               (route) => false);
                     },
                   ),

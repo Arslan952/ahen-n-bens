@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hensbuns/sidebarscreen.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import 'aboutus.dart';
@@ -15,6 +18,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  User? user = FirebaseAuth.instance.currentUser;
+
+  //To do List
+  CollectionReference usersCollection =
+  FirebaseFirestore.instance.collection('User');
+
   final item= const[
     Icon(Icons.people),
     Icon(Icons.home),
@@ -24,22 +34,28 @@ class _HomeScreenState extends State<HomeScreen> {
   int index=1;
   @override
   Widget build(BuildContext context) {
+    GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
     return Scaffold(
+      key: scaffoldkey,
+      drawer:SideBarScreen(),
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: Card(
-          color: Colors.white,
-          elevation: 5,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          shadowColor: Colors.black,
-          child: const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(
-              FontAwesomeIcons.barsStaggered,
-              color: Colors.black,
-              size: 30,
+        leading: GestureDetector(
+          onTap: ()=>scaffoldkey.currentState?.openDrawer(),
+          child: Card(
+            color: Colors.white,
+            elevation: 5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            shadowColor: Colors.black,
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(
+                FontAwesomeIcons.barsStaggered,
+                color: Colors.black,
+                size: 30,
+              ),
             ),
           ),
         ),

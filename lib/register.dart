@@ -274,6 +274,38 @@ class _RegisterState extends State<Register> {
                           onTap: ()async{
                             if(_formkey.currentState!.validate())
                             {
+                            /*  ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Container(
+                                    padding: const EdgeInsets.all(16),
+                                    height:90 ,
+                                    decoration: const BoxDecoration(
+                                        color: Color(0xffe1ad01),
+                                        borderRadius: BorderRadius.all(Radius.circular(20))
+                                    ),
+                                    child:Row(
+                                      children: [
+                                        const SizedBox(width: 48,),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: const [
+                                              Text('Register Successful ',style: TextStyle(fontSize: 18,color: Colors.white),),
+                                              Text('Please Login agin with your credential',style: TextStyle(fontSize: 12,color: Colors.white)),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    )),
+                                  behavior: SnackBarBehavior.floating,
+                                  backgroundColor: Colors.transparent,
+                                  elevation: 0,
+                                ),
+                              );
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const Login()),
+                                      (route) => false);*/
+
                               _formkey.currentState!.save();
                               try {
                                 FirebaseAuth auth = FirebaseAuth.instance;
