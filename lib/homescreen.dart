@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hensbuns/aresses.dart';
 import 'package:hensbuns/sidebarscreen.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   FirebaseFirestore.instance.collection('User');
 
   final item= const[
-    Icon(Icons.people),
+    Icon(FontAwesomeIcons.addressCard),
     Icon(Icons.home),
     Icon(FontAwesomeIcons.exclamation),
 
@@ -127,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
     switch(index)
     {
       case 0:
-        widget=Home();
+        widget=Adress();
         break;
       case 1:
         widget=Home();

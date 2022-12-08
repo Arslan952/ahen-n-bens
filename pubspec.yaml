@@ -73,6 +73,7 @@ flutter:
   assets:
     - assets/animation/
     - assets/image/
+    - assets/image/add.png
     - assets/image/burger.png
     - assets/image/deal1.png
     - assets/image/deal2.png

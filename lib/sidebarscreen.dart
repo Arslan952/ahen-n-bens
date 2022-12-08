@@ -31,19 +31,19 @@ class SideBarScreen extends StatelessWidget {
                   UserAccountsDrawerHeader(
                     accountName: Text(streamSnapshot.data!['name'] ),
                     accountEmail: Text(streamSnapshot.data!['email']),
-                    currentAccountPicture: CircleAvatar(
+                    currentAccountPicture: const CircleAvatar(
                       backgroundColor: Colors.white,),
                     ),
-                  ListTile(leading: Icon(Icons.home),
+                  const ListTile(leading: Icon(Icons.person),
+                    title: Text("Profile"),
+                    trailing: Icon(Icons.arrow_forward_ios),
+                  ),
+                  const ListTile(leading: Icon(Icons.home),
                     title: Text("Home"),
                     trailing: Icon(Icons.arrow_forward_ios),
                   ),
-                  ListTile(leading: Icon(Icons.home),
-                    title: Text("Home"),
-                    trailing: Icon(Icons.arrow_forward_ios),
-                  ),
-                  ListTile(leading: Icon(Icons.home),
-                    title: Text("Home"),
+                  const ListTile(leading: Icon(Icons.settings),
+                    title: Text("Setting"),
                     trailing: Icon(Icons.arrow_forward_ios),
                   )
                 ],
