@@ -3,11 +3,8 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hensbuns/aresses.dart';
 import 'package:hensbuns/sidebarscreen.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-
 import 'aboutus.dart';
 import 'home.dart';
 
@@ -21,6 +18,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   User? user = FirebaseAuth.instance.currentUser;
+  final Stream<QuerySnapshot> _stream =
+  FirebaseFirestore.instance.collection('Food').snapshots();
 
   //To do List
   CollectionReference usersCollection =
@@ -115,7 +114,8 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Color(0xffffc416),
         animationDuration: const Duration(milliseconds: 300),
       ),
-      body: Container(
+      body:
+       Container(
         height: double.infinity,
         width: double.infinity,
         child: getSelectedWidget(index:index),

@@ -1,12 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hensbuns/admin_home.dart';
 import 'package:hensbuns/register.dart';
-
 
 import 'forgetpassword.dart';
 import 'homescreen.dart';
-
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -33,58 +32,73 @@ class _LoginState extends State<Login> {
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => const HomeScreen()),
-                (route) => false);
+            (route) => false);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Container(
-            padding: const EdgeInsets.all(16),
-              height:90 ,
-              decoration: const BoxDecoration(
-                color: Color(0xffe1ad01),
-                borderRadius: BorderRadius.all(Radius.circular(20))
-              ),
-              child:Row(
-                children: [
-                  const SizedBox(width: 48,),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text('Login Suceesful',style: TextStyle(fontSize: 18,color: Colors.white),),
-                        Text('Welcome to hen n buns',style: TextStyle(fontSize: 12,color: Colors.white)),
-                      ],
-                    ),
-                  ),
-                ],
-              )),
-            behavior: SnackBarBehavior.floating,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
-         );
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Container(
+          SnackBar(
+            content: Container(
                 padding: const EdgeInsets.all(16),
-                height:90 ,
+                height: 90,
                 decoration: const BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.all(Radius.circular(20))
-                ),
-                child:Row(
+                    color: Color(0xffe1ad01),
+                    borderRadius: BorderRadius.all(Radius.circular(20))),
+                child: Row(
                   children: [
-                    const SizedBox(width: 48,),
+                    const SizedBox(
+                      width: 48,
+                    ),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
-                          Text('User not Found',style: TextStyle(fontSize: 18,color: Colors.white),),
-                          Text('Try again with different credential',style: TextStyle(fontSize: 12,color: Colors.white)),
+                          Text(
+                            'Login Suceesful',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                          Text('Welcome to hen n buns',
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.white)),
                         ],
                       ),
                     ),
                   ],
                 )),
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+          ),
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Container(
+                  padding: const EdgeInsets.all(16),
+                  height: 90,
+                  decoration: const BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 48,
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              'User not Found',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                            Text('Try again with different credential',
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.white)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )),
               behavior: SnackBarBehavior.floating,
               backgroundColor: Colors.transparent,
               elevation: 0,
@@ -92,27 +106,35 @@ class _LoginState extends State<Login> {
           );
         } else if (e.code == 'wrong-password') {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Container(
-                padding: const EdgeInsets.all(16),
-                height:90 ,
-                decoration: const BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.all(Radius.circular(20))
-                ),
-                child:Row(
-                  children: [
-                    const SizedBox(width: 48,),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text('Password is incorrect',style: TextStyle(fontSize: 18,color: Colors.white),),
-                          Text('Try to login with correct password',style: TextStyle(fontSize: 12,color: Colors.white)),
-                        ],
+            SnackBar(
+              content: Container(
+                  padding: const EdgeInsets.all(16),
+                  height: 90,
+                  decoration: const BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 48,
                       ),
-                    ),
-                  ],
-                )),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              'Password is incorrect',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                            Text('Try to login with correct password',
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.white)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )),
               behavior: SnackBarBehavior.floating,
               backgroundColor: Colors.transparent,
               elevation: 0,
@@ -125,6 +147,7 @@ class _LoginState extends State<Login> {
           MaterialPageRoute(builder: (context) => const HomeScreen()),
               (route) => false);*/
     }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -170,169 +193,178 @@ class _LoginState extends State<Login> {
                 height: MediaQuery.of(context).size.height * 0.15,
               ),
               Form(
-                 key: _formkey,
+                  key: _formkey,
                   child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: TextFormField(
-                      controller: emailcontroller,
-                      onChanged: (value){
-                        if(value.isNotEmpty && value.contains('@'))
-                        {
-                          setState(() {
-                            error.remove('Enter valid email');
-                          });
-                        }
-                      },
-                      validator: (value){
-                        if(value!.isEmpty && !value.contains('@'))
-                          {
-                            setState(() {
-                              error.add('Enter valid email');
-                            });
-                          }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        suffixIcon: const Padding(
-                            padding: EdgeInsets.only(right: 30),
-                            child: Icon(
-                              Icons.email_outlined,
-                            )),
-                        contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 42, vertical: 20),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        labelText: 'Email',
-                        hintText: 'Enter Email',
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(28),
-                            borderSide: const BorderSide(color: Colors.black26),
-                            gapPadding: 10),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(28),
-                            gapPadding: 10),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Padding(
-
-                    padding: const EdgeInsets.only(left: 20, right: 20),
-                    child: TextFormField(
-                      controller: passwordcontroller,
-                      onChanged: (value){
-                        if(value.isNotEmpty )
-                        {
-                          setState(() {
-                            error.remove('Enter Password');
-                          });
-                        }
-                      },
-                      validator: (value){
-                        if(value!.isEmpty )
-                        {
-                          setState(() {
-                            error.add('Enter Password');
-                          });
-                        }
-                        return null;
-                      },
-                      obscureText: _obsecuretext,
-                      decoration: InputDecoration(
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _obsecuretext = !_obsecuretext;
-                            });
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: TextFormField(
+                          controller: emailcontroller,
+                          onChanged: (value) {
+                            if (value.isNotEmpty && value.contains('@')) {
+                              setState(() {
+                                error.remove('Enter valid email');
+                              });
+                            }
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: Icon(_obsecuretext
-                                ? Icons.visibility
-                                : Icons.visibility_off),
+                          validator: (value) {
+                            if (value!.isEmpty && !value.contains('@')) {
+                              setState(() {
+                                error.add('Enter valid email');
+                              });
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            suffixIcon: const Padding(
+                                padding: EdgeInsets.only(right: 30),
+                                child: Icon(
+                                  Icons.email_outlined,
+                                )),
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 42, vertical: 20),
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            labelText: 'Email',
+                            hintText: 'Enter Email',
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(28),
+                                borderSide:
+                                    const BorderSide(color: Colors.black26),
+                                gapPadding: 10),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(28),
+                                gapPadding: 10),
                           ),
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 42, vertical: 20),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        labelText: 'Password',
-                        hintText: '*****',
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(28),
-                            borderSide: const BorderSide(color: Colors.black26),
-                            gapPadding: 10),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(28),
-                            gapPadding: 10),
                       ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  ErrorMessage(error: error),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height*0.05,
-                  ),
-                  GestureDetector(
-                    child: const Text(
-                      'Forget Password',
-                      style: TextStyle(color: Colors.black45),
-                    ),
-                    onTap: () {
-                     Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) =>const ForgetPassword()),
-                              (route) => false);
-                    },
-                  ),
-                  const SizedBox(height: 15,),
-                  GestureDetector(
-                    child: Container(
-                      height: 50,
-                      margin: const EdgeInsets.symmetric(horizontal: 50),
-                      decoration: BoxDecoration(
-                          color: const Color(0xffffc416),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: const Center(
-                        child: Text(
-                          " Login",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: TextFormField(
+                          controller: passwordcontroller,
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              setState(() {
+                                error.remove('Enter Password');
+                              });
+                            }
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              setState(() {
+                                error.add('Enter Password');
+                              });
+                            }
+                            return null;
+                          },
+                          obscureText: _obsecuretext,
+                          decoration: InputDecoration(
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _obsecuretext = !_obsecuretext;
+                                });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: Icon(_obsecuretext
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                              ),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 42, vertical: 20),
+                            floatingLabelBehavior: FloatingLabelBehavior.always,
+                            labelText: 'Password',
+                            hintText: '*****',
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(28),
+                                borderSide:
+                                    const BorderSide(color: Colors.black26),
+                                gapPadding: 10),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(28),
+                                gapPadding: 10),
+                          ),
                         ),
                       ),
-                    ),
-                    onTap: (){
-                      if(_formkey.currentState!.validate())
-                      {
-                        _formkey.currentState!.save();
-                        userlogin(
-                            emailcontroller.text, passwordcontroller.text);
-
-                      }
-                    }
-                  ),
-                  const SizedBox(height: 15,),
-                  GestureDetector(
-                    child: const Text(
-                      'Have no account? Register',
-                      style: TextStyle(color: Colors.black45),
-                    ),
-                    onTap: () {
-                     Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => const Register()),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      ErrorMessage(error: error),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                      ),
+                      GestureDetector(
+                        child: const Text(
+                          'Forget Password',
+                          style: TextStyle(color: Colors.black45),
+                        ),
+                        onTap: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ForgetPassword()),
                               (route) => false);
-                    },
-                  ),
-                ],
-              )),
-
+                        },
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      GestureDetector(
+                        child: Container(
+                          height: 50,
+                          margin: const EdgeInsets.symmetric(horizontal: 50),
+                          decoration: BoxDecoration(
+                              color: const Color(0xffffc416),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: const Center(
+                            child: Text(
+                              " Login",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          if (emailcontroller.text == "admin" &&
+                              passwordcontroller.text == "password") {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AdminHome()),
+                                (route) => false);
+                          } else {
+                            if (_formkey.currentState!.validate()) {
+                              _formkey.currentState!.save();
+                              userlogin(emailcontroller.text,
+                                  passwordcontroller.text);
+                            }
+                          }
+                        },
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      GestureDetector(
+                        child: const Text(
+                          'Have no account? Register',
+                          style: TextStyle(color: Colors.black45),
+                        ),
+                        onTap: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Register()),
+                              (route) => false);
+                        },
+                      ),
+                    ],
+                  )),
             ],
           ),
         ),
@@ -352,17 +384,23 @@ class ErrorMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: List.generate(error.length, (index) =>formErrorText(error[index]) ),
+      children:
+          List.generate(error.length, (index) => formErrorText(error[index])),
     );
   }
 
   Padding formErrorText(String error) {
     return Padding(
-        padding: const EdgeInsets.only(left: 30,top: 15),
-        child: Row(children: [
-         const Icon(Icons.error,color: Colors.red,),
+      padding: const EdgeInsets.only(left: 30, top: 15),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.error,
+            color: Colors.red,
+          ),
           Text(error)
-                ],),
-      );
+        ],
+      ),
+    );
   }
 }
