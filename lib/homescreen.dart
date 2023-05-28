@@ -3,7 +3,9 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:hensbuns/aresses.dart';
+import 'package:hensbuns/cartscreen.dart';
 import 'package:hensbuns/sidebarscreen.dart';
 import 'aboutus.dart';
 import 'home.dart';
@@ -71,32 +73,38 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),*/
         actions: [
-          Card(
-            color: Colors.white,
-            elevation: 5,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            shadowColor: Colors.black,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Stack(
-                children: const [
-                  Icon(
-                    Icons.notifications,
-                    color: Colors.black,
-                    size: 30,
-                  ),
-                  Positioned(
-                    top: 3,
-                    right: 1,
-                    child: Icon(
-                      Icons.brightness_1,
-                      color: Colors.red,
-                      size: 12,
+          InkWell(
+            onTap: (){
+
+              Get.to(CartScreen(uid:user!.uid ));
+            },
+            child: Card(
+              color: Colors.white,
+              elevation: 5,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              shadowColor: Colors.black,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Stack(
+                  children: const [
+                    Icon(
+                      Icons.shopping_cart,
+                      color: Colors.black,
+                      size: 30,
                     ),
-                  )
-                ],
+                    Positioned(
+                      top: 3,
+                      right: 1,
+                      child: Icon(
+                        Icons.brightness_1,
+                        color: Colors.red,
+                        size: 12,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -167,7 +169,58 @@ class _DetailScreenState extends State<DetailScreen> {
                         child: Icon(Icons.add),
                         backgroundColor: Colors.yellow,
                         foregroundColor: Colors.black,
-                        onPressed: () {},
+                        onPressed: () {
+                          try{
+                            User? user = FirebaseAuth.instance.currentUser;
+                            FirebaseFirestore.instance.collection('orders').add({
+                              'uid':user!.uid,
+                              'name': widget.food.name,
+                              'quantity': quantity,
+                              'price': widget.food.price,
+                            }).then((value) => {
+                            showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                            return AlertDialog(
+                            title: Text('Add To Cart'),
+                            content: Text('Your order is added to cart'),
+                            actions: <Widget>[
+                            TextButton(
+                            child: Text('OK'),
+                            onPressed: () {
+                            Navigator.of(context).pop();
+                            },
+                            ),
+                            ],
+                            );
+                            },
+                            )
+                            }).onError((error, stackTrace) => {
+                            showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                            return AlertDialog(
+                            title: Text('There  is some Error'),
+                            content: Text('Your order is not added to cart'),
+                            actions: <Widget>[
+                            TextButton(
+                            child: Text('OK'),
+                            onPressed: () {
+                            Navigator.of(context).pop();
+                            },
+                            ),
+                            ],
+                            );
+                            },
+                            )
+                            });
+                          }
+                          catch(e)
+                          {
+                            print(e);
+                          }
+                     
+                        },
                       ),
                     )
                   ],

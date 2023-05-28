@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hensbuns/addfood.dart';
+import 'package:hensbuns/placedorder.dart';
 import 'package:hensbuns/userlist.dart';
 
 class AdminHome extends StatefulWidget {
@@ -35,22 +37,23 @@ class _AdminHomeState extends State<AdminHome> {
                 padding: const EdgeInsets.all(25),
                 child: InkWell(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>UserList()));
+                    Get.to(DataListScreen());
+                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>UserList()));
                   },
                   child: GlassContainer.clearGlass(
-                      child: Center(
-                        child: Text(
-                          "User List",
-                          style: GoogleFonts.lobster(
-                              fontSize: 32, fontWeight: FontWeight.bold),
-                        ),
-                      ),
                       borderRadius: BorderRadius.circular(20),
                       borderColor: Colors.white,
                       elevation: 5,
                       blur: 2,
                       height: MediaQuery.of(context).size.height * 0.25,
-                      width: MediaQuery.of(context).size.width*0.9),
+                      width: MediaQuery.of(context).size.width*0.9,
+                      child: Center(
+                        child: Text(
+                          "Ordered Food",
+                          style: GoogleFonts.lobster(
+                              fontSize: 32, fontWeight: FontWeight.bold),
+                        ),
+                      )),
                 ),
               ),
               Padding(

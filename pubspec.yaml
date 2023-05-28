@@ -48,6 +48,8 @@ dependencies:
   image_picker: ^0.8.6
   firebase_storage: ^11.0.4
   curved_navigation_bar: ^1.0.3
+  get:
+
 
 dev_dependencies:
   flutter_test:
