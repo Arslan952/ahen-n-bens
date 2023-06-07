@@ -44,7 +44,7 @@ class _AdminHomeState extends State<AdminHome> {
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(25),
+                padding: const EdgeInsets.all(25),//he
                 child: InkWell(
                   onTap: (){
                     Get.to(DataListScreen());
