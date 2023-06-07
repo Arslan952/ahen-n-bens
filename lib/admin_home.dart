@@ -6,6 +6,8 @@ import 'package:hensbuns/addfood.dart';
 import 'package:hensbuns/placedorder.dart';
 import 'package:hensbuns/userlist.dart';
 
+import 'login.dart';
+
 class AdminHome extends StatefulWidget {
   const AdminHome({Key? key}) : super(key: key);
 
@@ -25,10 +27,18 @@ class _AdminHomeState extends State<AdminHome> {
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 22, top: 70),
-            child: Text(
-              "Welcome to the\n Admin Panel",
-              style: GoogleFonts.lobster(
-                  fontSize: 32, fontWeight: FontWeight.bold),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Welcome to the\n Admin Panel",
+                  style: GoogleFonts.lobster(
+                      fontSize: 32, fontWeight: FontWeight.bold),
+                ),
+                IconButton(onPressed: ()async{
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
+                }, icon: Icon(Icons.exit_to_app))
+              ],
             ),
           ),
           Column(

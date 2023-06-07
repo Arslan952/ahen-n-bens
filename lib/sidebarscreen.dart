@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hensbuns/login.dart';
 class SideBarScreen extends StatelessWidget {
   const SideBarScreen({Key? key}) : super(key: key);
 
@@ -34,18 +35,16 @@ class SideBarScreen extends StatelessWidget {
                     currentAccountPicture: const CircleAvatar(
                       backgroundColor: Colors.white,),
                     ),
-                  const ListTile(leading: Icon(Icons.person),
-                    title: Text("Profile"),
+                    ListTile(
+                    onTap: ()async{
+                      await FirebaseAuth.instance.signOut();
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
+                    },
+                    leading: Icon(Icons.exit_to_app),
+                    title: Text("Logout"),
                     trailing: Icon(Icons.arrow_forward_ios),
                   ),
-                  const ListTile(leading: Icon(Icons.home),
-                    title: Text("Home"),
-                    trailing: Icon(Icons.arrow_forward_ios),
-                  ),
-                  const ListTile(leading: Icon(Icons.settings),
-                    title: Text("Setting"),
-                    trailing: Icon(Icons.arrow_forward_ios),
-                  )
+
                 ],
               ),
             ),

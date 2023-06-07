@@ -6,10 +6,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'fooddata.dart';
 
 class DetailScreen extends StatefulWidget {
-  DetailScreen({Key? key, required this.food}) : super(key: key);
+  String image,name,price,rating,calaries,time,description;
+  DetailScreen({Key? key, required this.image,required this.name,required this.price,required this.description,required this.time,required this.calaries,required this.rating}) : super(key: key);
 
   @override
-  final Food food;
+
 
   State<DetailScreen> createState() => _DetailScreenState();
 }
@@ -20,7 +21,7 @@ class _DetailScreenState extends State<DetailScreen> {
   bool _isButtonClicked=false;
   Widget build(BuildContext context) {
     int price;
-    price = quantity * widget.food.price;
+    price = quantity * int.parse(widget.price);
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -31,12 +32,17 @@ class _DetailScreenState extends State<DetailScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
             shadowColor: Colors.black,
-            child: const Padding(
+            child:  Padding(
               padding: EdgeInsets.all(8.0),
-              child: Icon(
-                FontAwesomeIcons.angleLeft,
-                color: Colors.black,
-                size: 30,
+              child: InkWell(
+                onTap: (){
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  FontAwesomeIcons.angleLeft,
+                  color: Colors.black,
+                  size: 30,
+                ),
               ),
             ),
           ),
@@ -61,8 +67,8 @@ class _DetailScreenState extends State<DetailScreen> {
                 height: MediaQuery.of(context).size.height * 0.3,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                  image: AssetImage(
-                    widget.food.image,
+                  image: NetworkImage(
+                    widget.image,
                   ),
                 )),
               ),
@@ -96,12 +102,12 @@ class _DetailScreenState extends State<DetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            widget.food.name,
+                            widget.name,
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 23),
                           ),
                           Text(
-                            "\$" + price.toString(),
+                            "\$" + widget.price,
                             style: const TextStyle(
                                 fontSize: 22, fontWeight: FontWeight.bold),
                           )
@@ -121,7 +127,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: Center(child: Text("⭐" +widget.food.rating.toString(),style: TextStyle(fontWeight: FontWeight.bold),)),
+                            child: Center(child: Text("⭐" +widget.rating,style: TextStyle(fontWeight: FontWeight.bold),)),
                           ),
                         ),
                         SizedBox(
@@ -134,7 +140,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: Center(child: Text("🔥"+" "+widget.food.calaries,style: TextStyle(fontWeight: FontWeight.bold))),
+                            child: Center(child: Text("🔥"+" "+widget.calaries,style: TextStyle(fontWeight: FontWeight.bold))),
                           ),
                         ),
                         SizedBox(
@@ -147,7 +153,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: Center(child: Text("🕒"+" " +widget.food.time,style: TextStyle(fontWeight: FontWeight.bold))),
+                            child: Center(child: Text("🕒"+" " +widget.time,style: TextStyle(fontWeight: FontWeight.bold))),
                           ),
                         )
                       ],
@@ -160,7 +166,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         children: [
                           Text('Description:', style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 23),),
-                          Text(widget.food.description2)
+                          Text(widget.description)
                         ],
                     ),
                      ),
@@ -174,9 +180,9 @@ class _DetailScreenState extends State<DetailScreen> {
                             User? user = FirebaseAuth.instance.currentUser;
                             FirebaseFirestore.instance.collection('orders').add({
                               'uid':user!.uid,
-                              'name': widget.food.name,
+                              'name': widget.name,
                               'quantity': quantity,
-                              'price': widget.food.price,
+                              'price': int.parse(widget.price),
                             }).then((value) => {
                             showDialog(
                             context: context,
