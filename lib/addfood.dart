@@ -376,6 +376,23 @@ class _AddFoodState extends State<AddFood> {
                                     'detail':descriptioncontroller.text,
                                     'image':imageUrl
                                   });
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text('Food Added'),
+                                        content: Text('Your Food added sucessfully.'),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            child: Text('OK'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
 
                                 } catch (e) {
                                   print(e);

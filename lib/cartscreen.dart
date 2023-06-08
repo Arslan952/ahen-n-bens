@@ -193,7 +193,7 @@ class CartScreen extends StatelessWidget {
       }
 
       int quantity = data['quantity'] as int;
-      totalOrderPrice += price * quantity;
+      totalOrderPrice += price;
     });
 
     return totalOrderPrice;
